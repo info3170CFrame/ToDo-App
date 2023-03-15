@@ -1,0 +1,49 @@
+@import '../../styles/variables.scss';
+
+.main-header {
+    display: flex;
+    align-items: center;
+    border-bottom: solid 2px $border-color;
+
+    svg {
+        font-size: 40px;
+        margin-right: 15px;
+        g {
+            fill: $primary-color;
+        }
+        @include smallBreakpoint {
+            font-size: 55px;
+            g {
+                fill: $secondary-color;
+            }
+        }
+
+        @include largeBreakpoint {
+            font-size: 70px;
+            g {
+                fill: blue;
+            }
+        }
+        
+    }
+
+    h1 {
+        margin: 0;
+        font-family: $title-font;
+        font-size: 38px;
+        color: $secondary-color;
+
+        @include smallBreakpoint {
+            font-size: 55px;
+        }
+    }
+
+    .filler {
+        flex-grow: 1;
+    }
+    .doneBy {
+        opacity: 50%;
+        color: $primary-color;
+        margin-right: 10px;
+    }
+}

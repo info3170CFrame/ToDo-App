@@ -1,0 +1,70 @@
+@import '../../styles/variables.scss';
+
+.form-component {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+
+        .errorMsg {
+        font-weight: bold;
+        color: white;
+        background-color: red;
+        padding: 7px;
+        text-align: center;
+        margin-bottom: 20px;
+        }
+        .form-new-task {
+            font-family: $body-font;
+        }
+
+        .details {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            label {
+                display: flex;
+                flex-direction: column;
+
+                &.form-description {
+                    width: 100%;
+                    max-width: 400px;
+                }
+                input {
+                    width: 100%;
+                    padding: 0.5rem;
+                }
+            }
+        }
+
+        .form-description,
+        .form-status,
+        .form-add-button {
+            flex: 1;
+            margin-bottom: 7px;
+            font-family: $body-font;
+        }
+
+        .form-add-button {
+            width: 20%;
+            align-self: flex-end;
+            background-color: $background-color;
+            border: none;
+            svg {
+                font-size: 50px;
+                padding: 1px;
+                margin: 0;
+                color: $primary-color;
+            }
+            svg:hover {
+                color: $secondary-color;
+            }
+            @include breakpoint(200px) {
+                align-self: flex-start;
+            }
+            @include smallBreakpoint {
+                align-self: flex-end;
+            }
+        }
+
+}

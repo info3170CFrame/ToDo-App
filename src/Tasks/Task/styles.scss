@@ -1,0 +1,70 @@
+@import "./../../styles/variables.scss";
+
+.each-task {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        background-color: $task-background;
+        margin-bottom: 3px;
+
+   .task-title {
+        font-size: 20px;
+        font-family: $body-font;
+   }
+    .task-id {
+        margin-bottom: 7px;
+        margin-top: -10px;
+    }
+
+    .task-status {
+        margin-bottom: 15px;
+    }
+
+   .complete {
+        color: $completed-color;
+   }
+
+   .open {
+        color: $open-color;
+        font-weight: bold;
+   }
+
+    .task-buttons {
+        margin-bottom: 23px;
+        display: flex;
+        gap: 5px;
+
+    .status-button,
+    .remove-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-family: $body-font;
+        background-color: $task-background;
+        border: none;
+    }
+    .status-button:hover {
+        cursor: pointer;
+    }
+    .remove-button:hover {
+        background-color: $secondary-color;
+    }
+
+    .status-button {
+        svg {
+            font-size: 25px;
+        }
+    }
+
+    .remove-button {
+        margin-left: 5px;
+    
+
+        svg {
+            font-size: 20px;
+        } 
+        }
+}
+
+}

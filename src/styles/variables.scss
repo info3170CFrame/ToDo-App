@@ -1,0 +1,28 @@
+$title-font: 'Philosopher', sans-serif;
+$body-font: 'Francois One', sans-serif;
+
+$primary-color: rgb(40, 219, 40);
+$secondary-color: red;
+$text-color: black;
+$task-background: beige;
+$background-color: white;
+$border-color: yellow;
+$completed-color: darkgreen;
+$open-color: darkred; 
+
+@mixin breakpoint($min-width) {
+    @media only screen and (min-width: $min-width) {
+        @content;
+    }
+}
+
+@mixin smallBreakpoint {
+    @include breakpoint(700px) {
+        @content;
+    }
+}
+@mixin largeBreakpoint {
+    @include breakpoint(1200px) {
+        @content;
+    }
+}

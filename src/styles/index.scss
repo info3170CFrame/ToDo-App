@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Francois+One&family=Philosopher&display=swap');
+@import './variables.scss';
+
+body {
+  margin: 0;
+  font-family: $title-font;
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+    .main-page {
+      display: flex;
+      flex-direction: row;
+      margin: 20px;
+
+      .filler {
+        flex-grow: 1;      
+
+      @include smallBreakpoint {
+        .filler{
+            flex-grow: 0;
+        }
+    
+      }
+      }  
+    }
+}

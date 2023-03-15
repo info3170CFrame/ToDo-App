@@ -1,0 +1,21 @@
+@import "./../styles/variables.scss";
+
+.main-tasks {
+
+    .clear-button {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    background-color: $background-color;
+    border: none; 
+    font-family: $body-font;
+    font-size: 15px;
+    }
+    
+    svg {
+        font-size: 35px;
+        margin-right: 3px;
+        margin-left: 3px;
+    }
+
+}
