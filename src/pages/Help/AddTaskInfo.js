@@ -1,3 +1,6 @@
+import { NavLink } from "react-router-dom";
+import "./styles.scss";
+
 export default function AddTaskInfo() {
 	return (
 		<>
@@ -9,6 +12,7 @@ export default function AddTaskInfo() {
 				velit aliquet sagittis id consectetur. Risus commodo viverra maecenas
 				accumsan lacus.
 			</p>
+			<NavLink to='/help'>Back to Help Page</NavLink>
 		</>
 	);
 }

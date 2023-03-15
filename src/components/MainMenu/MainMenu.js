@@ -3,7 +3,7 @@ import "./styles.scss";
 
 function MainMenu() {
 	return (
-		<nav>
+		<nav className='main'>
 			<NavLink to='/'>Tasks</NavLink>
 			<NavLink to='/add'>Add</NavLink>
 			<NavLink to='/help'>Help</NavLink>

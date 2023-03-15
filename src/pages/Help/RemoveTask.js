@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 export default function RemoveTask() {
 	return (
 		<>
@@ -9,6 +11,12 @@ export default function RemoveTask() {
 				velit aliquet sagittis id consectetur. Risus commodo viverra maecenas
 				accumsan lacus.
 			</p>
+			<NavLink
+				to='/help'
+				className='back-button'
+			>
+				Back to Help Page
+			</NavLink>
 		</>
 	);
 }

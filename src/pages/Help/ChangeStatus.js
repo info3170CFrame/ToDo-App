@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 export default function ChangeStatus() {
 	return (
 		<>
@@ -9,6 +11,7 @@ export default function ChangeStatus() {
 				felis eget velit aliquet sagittis id consectetur. Risus commodo viverra
 				maecenas accumsan lacus.
 			</p>
+			<NavLink to='/help'>Back to Help Page</NavLink>
 		</>
 	);
 }

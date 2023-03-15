@@ -1,0 +1,21 @@
+@import "../../styles/variables.scss";
+
+nav.main {
+    display: flex;
+    justify-content: center;
+    background-color: $primary-color;
+    margin-top: 3px;
+
+    a {
+        display: block;
+        padding: 0.5rem 0.75rem;
+        font-size: 1.2rem;
+        color: $secondary-color;
+        font-weight: bold;
+        text-decoration: none;
+    
+        &:hover {
+            background-color: $completed-color;
+        }
+    }
+}

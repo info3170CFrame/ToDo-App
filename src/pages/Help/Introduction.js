@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 export default function Introduction() {
 	return (
 		<>
@@ -9,6 +11,7 @@ export default function Introduction() {
 				ipsum dolor sit amet consectetur. Cras sed felis eget velit aliquet
 				sagittis id consectetur. Risus commodo viverra maecenas accumsan lacus.
 			</p>
+			<NavLink to='/help'>Back to Help Page</NavLink>
 		</>
 	);
 }

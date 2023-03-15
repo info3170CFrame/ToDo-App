@@ -13,17 +13,20 @@ main.page {
                 font-size: 1rem;
                 padding: 1rem;
                 border-top: solid 1px $border-color;
+                background-color: $primary-color;
+                text-align: center;
 
                 &:first-child {
                     border-top: none;
                 }
             
                 &:hover {
-                    color: $primary-color;
+                    color: $border-color;
                 }
             }
         }
-
+         
+        
        
 
         }
