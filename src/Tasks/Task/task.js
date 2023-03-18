@@ -1,20 +1,21 @@
+import { useDispatch } from "react-redux";
+
 import "./styles.scss";
 import { AiFillDelete } from "react-icons/ai";
 import { FaToggleOn, FaToggleOff } from "react-icons/fa";
+import { deleteTask, changeStatus } from "../../redux/taskSlice";
 
 export default function Task(props) {
+	// const tasks = useSelector((state) => state.task.tasks);
+	const dispatch = useDispatch();
+
 	const handleStatusChange = () => {
-		const id = props.task.id;
-		props.onStatusChange(id);
+		dispatch(changeStatus(props.task.id));
 	};
 	const handleRemoveTask = () => {
-		const id = props.task.id;
-		props.onRemoveTask(id);
+		dispatch(deleteTask(props.task.id));
 	};
-	const handleToggle = () => {
-		const id = props.task.id;
-		props.onToggle(id);
-	};
+
 	return (
 		<div className='each-task'>
 			<h3 className='task-title'>{props.task.description}</h3>
@@ -30,10 +31,7 @@ export default function Task(props) {
 					onClick={handleStatusChange}
 					className='status-button'
 				>
-					<div
-						className='toggle-icon'
-						onClick={handleToggle}
-					>
+					<div className='toggle-icon'>
 						{props.task.complete ? <FaToggleOn /> : <FaToggleOff />}
 						Change Status
 					</div>

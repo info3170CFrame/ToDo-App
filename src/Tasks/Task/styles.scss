@@ -1,11 +1,12 @@
 @import "./../../styles/variables.scss";
 
 .each-task {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        background-color: $task-background;
-        margin-bottom: 3px;
+    display: inline-block;
+    background-color: $task-background;
+    padding: 10px;
+    margin: 5px;
+    width: 30%;
+    border-radius: 10px;
 
    .task-title {
         font-size: 20px;

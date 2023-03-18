@@ -1,26 +1,34 @@
 import { useState } from "react";
 import { AiFillPlusCircle } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { addTask } from "../../redux/taskSlice";
 import "./styles.scss";
 
-export default function Form({ onAddTask }) {
+export default function Form() {
+	// const form = useSelector((state) => state.form);
+	const dispatch = useDispatch();
+
 	const [description, setDescription] = useState("");
 	const [status, setStatus] = useState(false);
 	const [errorMsg, setErrorMsg] = useState("");
+	const [successMessage, setSuccessMessage] = useState("");
 
 	const handleFormSubmit = (event) => {
 		event.preventDefault();
 		// verify that the user had entered something in the description field
 		if (description === "") {
 			setErrorMsg("Please enter a description");
+			setSuccessMessage("");
 		} else {
-			// this calls the function from App.js
-			onAddTask(description, status);
+			// this calls the function
+			dispatch(addTask({ description: description, status: status }));
 
 			// clear form by resetting the state
 			setDescription("");
 			setStatus(false);
 
 			setErrorMsg("");
+			setSuccessMessage("New task submitted!");
 		}
 	};
 
@@ -29,9 +37,13 @@ export default function Form({ onAddTask }) {
 			className='form-component'
 			onSubmit={handleFormSubmit}
 		>
-			<h2 className='form-new-task'>Add a new task:</h2>
 			{/* if the error message is not empty, prompt user to fill in description */}
-			{errorMsg !== "" && <div className='errorMsg'>{errorMsg}</div>}
+			{errorMsg !== "" && successMessage === "" && (
+				<div className='errorMsg'>{errorMsg}</div>
+			)}
+			{successMessage !== "" && errorMsg === "" && (
+				<div className='successMsg'>{successMessage}</div>
+			)}
 			<div className='details'>
 				<label className='form-description'>
 					Description:
