@@ -22,12 +22,24 @@ main.page {
             
                 &:hover {
                     color: $border-color;
-                }
+                } 
+                
+            }
+            @include breakpoint(1000px) {
+                 margin-left: 250px;
             }
         }
-         
-        
-       
-
-        }
+        article {
+            @include breakpoint(1000px) {
+                margin-left: 250px;
+           }
+        } 
+           
     }
+    
+    .help-categories {
+        width: 70%;
+        margin-top: 50px;
+        
+    }  
+}

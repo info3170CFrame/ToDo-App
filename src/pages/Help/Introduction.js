@@ -1,8 +1,8 @@
-import { NavLink } from "react-router-dom";
+import "./styles.scss";
 
 export default function Introduction() {
 	return (
-		<>
+		<div className='help-categories'>
 			<p>Thank you for visiting!</p>
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -11,7 +11,6 @@ export default function Introduction() {
 				ipsum dolor sit amet consectetur. Cras sed felis eget velit aliquet
 				sagittis id consectetur. Risus commodo viverra maecenas accumsan lacus.
 			</p>
-			<NavLink to='/help'>Back to Help Page</NavLink>
-		</>
+		</div>
 	);
 }

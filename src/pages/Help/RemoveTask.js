@@ -1,8 +1,7 @@
-import { NavLink } from "react-router-dom";
-
+import "./styles.scss";
 export default function RemoveTask() {
 	return (
-		<>
+		<div className='help-categories'>
 			<p>
 				To remove a task Lorem ipsum dolor sit amet, consectetur adipiscing
 				elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -11,12 +10,6 @@ export default function RemoveTask() {
 				velit aliquet sagittis id consectetur. Risus commodo viverra maecenas
 				accumsan lacus.
 			</p>
-			<NavLink
-				to='/help'
-				className='back-button'
-			>
-				Back to Help Page
-			</NavLink>
-		</>
+		</div>
 	);
 }

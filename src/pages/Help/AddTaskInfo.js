@@ -1,9 +1,8 @@
-import { NavLink } from "react-router-dom";
 import "./styles.scss";
 
 export default function AddTaskInfo() {
 	return (
-		<>
+		<div className='help-categories'>
 			<p>
 				To add a new task Lorem ipsum dolor sit amet, consectetur adipiscing
 				elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -12,7 +11,6 @@ export default function AddTaskInfo() {
 				velit aliquet sagittis id consectetur. Risus commodo viverra maecenas
 				accumsan lacus.
 			</p>
-			<NavLink to='/help'>Back to Help Page</NavLink>
-		</>
+		</div>
 	);
 }

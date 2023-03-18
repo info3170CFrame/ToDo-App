@@ -12,52 +12,6 @@ import { Route, Routes } from "react-router-dom";
 import "./styles/index.scss";
 
 export default function App() {
-	// const [tasks, setTasks] = useState([
-	// 	{
-	// 		id: uuid(),
-	// 		description: "Complete Lab 4",
-	// 		complete: true,
-	// 	},
-	// 	{
-	// 		id: uuid(),
-	// 		description: "Complete Quiz",
-	// 		complete: false,
-	// 	},
-	// 	{
-	// 		id: uuid(),
-	// 		description: "Complete discussion 8",
-	// 		complete: true,
-	// 	},
-	// ]);
-	// const handleClearTasks = () => {
-	// 	setTasks([]);
-	// };
-
-	// const handleStatusChange = (id) => {
-	// 	const taskStatus = [...tasks];
-	// 	taskStatus.forEach((task) => {
-	// 		if (task.id === id) {
-	// 			task.complete = !task.complete;
-	// 		}
-	// 	});
-	// 	setTasks(taskStatus);
-	// };
-
-	// const handleRemoveTask = (id) => {
-	// 	const filteredTasks = tasks.filter((task) => task.id !== id);
-	// 	setTasks(filteredTasks);
-	// };
-
-	// const handleAddTask = (description, status) => {
-	// 	//using the spread operator allows us to make a copy of the existing array
-	// 	// and add the new task, triggering a change and render
-	// 	setTasks([
-	// 		...tasks,
-	// 		{ id: uuid(), description: description, done: status },
-	// 	]);
-	// 	alert("new task added");
-	// };
-
 	return (
 		<>
 			<Header />
@@ -73,23 +27,24 @@ export default function App() {
 				<Route
 					path='/help'
 					element={<Help />}
-				/>
-				<Route
-					path='/help/intro'
-					element={<Introduction />}
-				/>
-				<Route
-					path='/help/addtaskinfo'
-					element={<AddTaskInfo />}
-				/>
-				<Route
-					path='/help/removetask'
-					element={<RemoveTask />}
-				/>
-				<Route
-					path='/help/changestatus'
-					element={<ChangeStatus />}
-				/>
+				>
+					<Route
+						path='intro'
+						element={<Introduction />}
+					/>
+					<Route
+						path='addtaskinfo'
+						element={<AddTaskInfo />}
+					/>
+					<Route
+						path='removetask'
+						element={<RemoveTask />}
+					/>
+					<Route
+						path='changestatus'
+						element={<ChangeStatus />}
+					/>
+				</Route>
 				<Route
 					path='*'
 					element={<PageNotFound />}

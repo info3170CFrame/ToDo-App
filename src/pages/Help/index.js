@@ -1,5 +1,5 @@
 import PageContainer from "../../components/PageContainer";
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import "./styles.scss";
 
 export default function Help() {
@@ -16,6 +16,7 @@ export default function Help() {
 				<NavLink to='/help/removetask'>Removing Tasks</NavLink>
 				<NavLink to='/help/changestatus'>Changing Status</NavLink>
 			</aside>
+			<Outlet />
 		</PageContainer>
 	);
 }
