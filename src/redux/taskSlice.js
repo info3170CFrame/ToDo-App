@@ -1,28 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import uuid from "react-uuid";
-
-const initialTasks = [
-	{
-		id: uuid(),
-		description: "Complete Lab 4",
-		complete: true,
-	},
-	{
-		id: uuid(),
-		description: "Complete Quiz",
-		complete: false,
-	},
-	{
-		id: uuid(),
-		description: "Complete discussion 8",
-		complete: true,
-	},
-];
 
 export const taskSlice = createSlice({
 	name: "task",
 	initialState: {
-		tasks: initialTasks,
+		tasks: [],
 	},
 	reducers: {
 		clearTasks: (state, action) => {
@@ -41,16 +22,14 @@ export const taskSlice = createSlice({
 			});
 		},
 		addTask: (state, action) => {
-			const newTask = {
-				id: uuid(),
-				description: action.payload.description,
-				done: action.payload.status,
-			};
-			state.tasks.push(newTask);
+			state.tasks.push(action.payload);
+		},
+		setTasks: (state, action) => {
+			state.tasks = action.payload;
 		},
 	},
 });
 
-export const { clearTasks, deleteTask, changeStatus, addTask } =
+export const { clearTasks, deleteTask, changeStatus, addTask, setTasks } =
 	taskSlice.actions;
 export default taskSlice.reducer;

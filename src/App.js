@@ -7,49 +7,73 @@ import AddTaskInfo from "./pages/Help/AddTaskInfo";
 import RemoveTask from "./pages/Help/RemoveTask";
 import ChangeStatus from "./pages/Help/ChangeStatus";
 import PageNotFound from "./pages/PageNotFound";
+import * as database from "./database";
+import { setTasks } from "./redux/taskSlice";
+import { useDispatch } from "react-redux";
+import Loading from "./components/Loading";
 
 import { Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
 import "./styles/index.scss";
 
 export default function App() {
+	const dispatch = useDispatch();
+	const [isLoading, setIsLoading] = useState(true);
+	useEffect(() => {
+		// load the db
+		(async () => {
+			const data = await database.loadFromFirebase();
+			dispatch(setTasks(data));
+			setIsLoading(false);
+		})();
+
+		// database.loadById();
+		// database.save();
+		// database.update();
+	}, []);
+
 	return (
 		<>
 			<Header />
-			<Routes>
-				<Route
-					path='/'
-					element={<HomePage />}
-				/>
-				<Route
-					path='/add'
-					element={<Add />}
-				/>
-				<Route
-					path='/help'
-					element={<Help />}
-				>
+			{isLoading ? (
+				<Loading />
+			) : (
+				<Routes>
 					<Route
-						path='intro'
-						element={<Introduction />}
+						path='/'
+						element={<HomePage />}
 					/>
 					<Route
-						path='addtaskinfo'
-						element={<AddTaskInfo />}
+						path='/add'
+						element={<Add />}
 					/>
 					<Route
-						path='removetask'
-						element={<RemoveTask />}
-					/>
+						path='/help'
+						element={<Help />}
+					>
+						<Route
+							path='intro'
+							element={<Introduction />}
+						/>
+						<Route
+							path='addtaskinfo'
+							element={<AddTaskInfo />}
+						/>
+						<Route
+							path='removetask'
+							element={<RemoveTask />}
+						/>
+						<Route
+							path='changestatus'
+							element={<ChangeStatus />}
+						/>
+					</Route>
 					<Route
-						path='changestatus'
-						element={<ChangeStatus />}
+						path='*'
+						element={<PageNotFound />}
 					/>
-				</Route>
-				<Route
-					path='*'
-					element={<PageNotFound />}
-				/>
-			</Routes>
+				</Routes>
+			)}
 		</>
 	);
 }

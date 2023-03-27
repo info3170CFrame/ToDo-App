@@ -13,6 +13,11 @@ export default function Tasks() {
 		dispatch(clearTasks());
 	};
 
+	// validate if there are posts to display
+	if (tasks.length === 0) {
+		return <div>Nothing to do...</div>;
+	}
+
 	return (
 		<div className='main-tasks'>
 			{tasks.map((task, index) => (

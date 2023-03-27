@@ -4,15 +4,28 @@ import "./styles.scss";
 import { AiFillDelete } from "react-icons/ai";
 import { FaToggleOn, FaToggleOff } from "react-icons/fa";
 import { deleteTask, changeStatus } from "../../redux/taskSlice";
+import * as database from "../../database";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../database/config";
 
 export default function Task(props) {
 	// const tasks = useSelector((state) => state.task.tasks);
 	const dispatch = useDispatch();
 
-	const handleStatusChange = () => {
+	const handleStatusChange = async (event, id) => {
+		event.preventDefault();
+		const taskRef = doc(db, "tasks", id);
+		const taskSnapshot = await getDoc(taskRef);
+		const taskData = taskSnapshot.data();
+		const currentStatus = taskData.status;
+		const updatedStatus = !currentStatus;
+		await database.update(id, updatedStatus);
 		dispatch(changeStatus(props.task.id));
 	};
-	const handleRemoveTask = () => {
+
+	const handleRemoveTask = async (event) => {
+		event.preventDefault();
+		database.remove(props.task.id);
 		dispatch(deleteTask(props.task.id));
 	};
 
@@ -28,7 +41,7 @@ export default function Task(props) {
 			</div>
 			<div className='task-buttons'>
 				<button
-					onClick={handleStatusChange}
+					onClick={(event) => handleStatusChange(event, props.task.id)}
 					className='status-button'
 				>
 					<div className='toggle-icon'>

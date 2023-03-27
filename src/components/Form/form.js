@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AiFillPlusCircle } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { addTask } from "../../redux/taskSlice";
+import * as database from "../../database";
 import "./styles.scss";
 
 export default function Form() {
@@ -12,25 +13,37 @@ export default function Form() {
 	const [status, setStatus] = useState(false);
 	const [errorMsg, setErrorMsg] = useState("");
 	const [successMessage, setSuccessMessage] = useState("");
+	const [isSaving, setIsSaving] = useState(false);
 
-	const handleFormSubmit = (event) => {
+	const handleFormSubmit = async (event) => {
 		event.preventDefault();
 		// verify that the user had entered something in the description field
 		if (description === "") {
 			setErrorMsg("Please enter a description");
 			setSuccessMessage("");
 		} else {
-			// this calls the function
-			dispatch(addTask({ description: description, status: status }));
+			setIsSaving(true);
+			const data = { description: description, status: status };
+			const savedId = await database.save(data);
+			setIsSaving(false);
+			if (savedId) {
+				data.id = savedId;
 
-			// clear form by resetting the state
-			setDescription("");
-			setStatus(false);
+				dispatch(addTask(data));
 
-			setErrorMsg("");
-			setSuccessMessage("New task submitted!");
+				// clear form by resetting the state
+				setDescription("");
+				setStatus(false);
+
+				setErrorMsg("");
+				setSuccessMessage("New task submitted!");
+			}
 		}
 	};
+
+	if (isSaving) {
+		return <div>Saving...</div>;
+	}
 
 	return (
 		<form
