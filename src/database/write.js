@@ -1,9 +1,11 @@
 import {
 	collection,
 	addDoc,
+	getDocs,
 	doc,
 	updateDoc,
 	deleteDoc,
+	writeBatch,
 } from "firebase/firestore";
 import { db } from "./config";
 
@@ -25,6 +27,20 @@ export async function update(id, status) {
 export async function remove(id) {
 	try {
 		await deleteDoc(doc(db, "tasks", id));
+		return true;
+	} catch {
+		return false;
+	}
+}
+
+export async function clear() {
+	try {
+		const querySnapshot = await getDocs(collection(db, "tasks"));
+		const batch = writeBatch(db);
+		querySnapshot.forEach((doc) => {
+			batch.delete(doc.ref);
+		});
+		await batch.commit();
 		return true;
 	} catch {
 		return false;

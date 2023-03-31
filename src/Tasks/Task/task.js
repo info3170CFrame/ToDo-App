@@ -7,10 +7,11 @@ import { deleteTask, changeStatus } from "../../redux/taskSlice";
 import * as database from "../../database";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../database/config";
+import { useState } from "react";
 
 export default function Task(props) {
-	// const tasks = useSelector((state) => state.task.tasks);
 	const dispatch = useDispatch();
+	const [status, setStatus] = useState(props.task.status);
 
 	const handleStatusChange = async (event, id) => {
 		event.preventDefault();
@@ -20,7 +21,10 @@ export default function Task(props) {
 		const currentStatus = taskData.status;
 		const updatedStatus = !currentStatus;
 		await database.update(id, updatedStatus);
-		dispatch(changeStatus(props.task.id));
+		dispatch(changeStatus(id, updatedStatus));
+		setStatus(updatedStatus);
+		const updatedTask = { ...props.task, status: updatedStatus };
+		props.onTaskUpdate(updatedTask);
 	};
 
 	const handleRemoveTask = async (event) => {
@@ -35,8 +39,8 @@ export default function Task(props) {
 			<div className='task-id'>Id: {props.task.id}</div>
 			<div className='task-status'>
 				<strong>Status:</strong>
-				<span className={props.task.complete ? "complete" : "open"}>
-					{props.task.complete ? "Complete" : "Open"}
+				<span className={status ? "complete" : "open"}>
+					{status ? "Complete" : "Open"}
 				</span>
 			</div>
 			<div className='task-buttons'>
@@ -45,7 +49,7 @@ export default function Task(props) {
 					className='status-button'
 				>
 					<div className='toggle-icon'>
-						{props.task.complete ? <FaToggleOn /> : <FaToggleOff />}
+						{status ? <FaToggleOn /> : <FaToggleOff />}
 						Change Status
 					</div>
 				</button>

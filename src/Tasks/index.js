@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { clearTasks } from "../redux/taskSlice";
+import * as database from "../database";
 
 import Task from "./Task/task";
 import "./styles.scss";
@@ -9,11 +10,12 @@ export default function Tasks() {
 	let tasks = useSelector((state) => state.task.tasks);
 	const dispatch = useDispatch();
 
-	const clear = () => {
+	const clear = (event) => {
+		event.preventDefault();
+		database.clear();
 		dispatch(clearTasks());
 	};
 
-	// validate if there are posts to display
 	if (tasks.length === 0) {
 		return <div>Nothing to do...</div>;
 	}

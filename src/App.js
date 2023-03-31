@@ -26,11 +26,7 @@ export default function App() {
 			dispatch(setTasks(data));
 			setIsLoading(false);
 		})();
-
-		// database.loadById();
-		// database.save();
-		// database.update();
-	}, []);
+	});
 
 	return (
 		<>
